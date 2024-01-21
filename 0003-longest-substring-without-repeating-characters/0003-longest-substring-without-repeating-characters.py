@@ -1,16 +1,14 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        maxl = 0
-        for i in range(len(s)):
-            cnt = 1
-            if len(s) == 0:
-                break
-            temp = [s[i]]
-            for j in range(i+1, len(s)):
-                if s[j] in temp:
-                    break
-                cnt = cnt + 1
-                temp.append(s[j])
-            maxl = max(maxl, cnt)
-        
-        return maxl
+        char_index_map = {}  # to store the last index of each character
+        start = 0  # start index of the current substring
+        max_length = 0  # maximum length of substring without repeating characters
+
+        for end in range(len(s)):
+            if s[end] in char_index_map and char_index_map[s[end]] >= start:
+                start = char_index_map[s[end]] + 1
+
+            char_index_map[s[end]] = end
+            max_length = max(max_length, end - start + 1)
+
+        return max_length
