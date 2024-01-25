@@ -10,10 +10,10 @@ class Solution:
                     return False
                 change[5] -= 1
                 change[10] += 1
-            elif i == 20:
+            else:
                 if change[10] > 0 and change[5] > 0:
-                    change[10] -= 1
                     change[5] -= 1
+                    change[10] -= 1
                 elif change[5] >= 3:
                     change[5] -= 3
                 else:
